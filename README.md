@@ -8,6 +8,14 @@ A plugin that adds a "**版本回溯** (version rewind)" button to the DeepSeek 
 >
 > Why: after DSH edits files you no longer need to hand-run `git` commands. You can rewind backward to right after a given turn, or "regret" and move forward again to the latest turn's state.
 
+## 截图 / Screenshot
+
+助手消息操作条（点赞/点踩/「补充说明」那一行）右侧的「**版本回溯**」按钮：
+
+The "版本回溯" button to the right of the assistant-message action strip (the like/dislike/note row):
+
+![版本回溯按钮 / git-revert button](git-revert-button.png)
+
 ## 功能 / Features
 
 - 在助手消息操作条（点赞/点踩/「补充说明」那一行）右侧加入「**版本回溯**」按钮。
