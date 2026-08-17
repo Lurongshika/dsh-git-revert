@@ -103,6 +103,16 @@ Assuming your DSH home is `~/.dsh` and the web profile is at `~/.dsh/profiles/we
 - The workspace must be a **git repository** with at least **one commit** (`git rev-parse --show-toplevel` succeeds).
 - Snapshots exist only for turns that **completed after** the plugin became active; earlier messages show "不可用".
 
+## 局限 / Limitations
+
+- **仅记录 git 仓库内的改动**：快照以 `git rev-parse --show-toplevel` 得到的仓库根目录为边界，只捕获该目录内的文件。仓库目录**之外**的文件操作（例如在 `~/Desktop`、`/tmp` 或其他非仓库路径下新建/修改文件）不会被快照，因而无法回退。
+- **`.gitignore` 忽略的文件不记录**：快照基于 `git add -A`，遵循 `.gitignore`，被忽略的文件不会进入快照。
+- 未跟踪文件回退时会被**整体移除**（回到「该轮后」状态中不存在该文件的情况），请留意不要在仓库里保留尚未提交的重要新文件。
+
+- **Only changes inside the git repo are recorded**: snapshots are bounded by the repo root returned by `git rev-parse --show-toplevel`. File operations outside that directory (e.g. creating/editing files under `~/Desktop`, `/tmp`, or any other non-repo path) are not captured and therefore cannot be rewound.
+- **`.gitignore`d files are not recorded**: snapshots use `git add -A`, which honors `.gitignore`, so ignored files never enter the snapshot.
+- Untracked files are removed entirely on rewind (returning to the "after the turn" state where that file did not exist) — avoid keeping important un-committed new files in the repo.
+
 ## License
 
 MIT
